@@ -4,7 +4,7 @@ import AuthContext from '../../provider/Provider';
 const BookedServices = () => {
     const { user } = useContext(AuthContext);
     const [services, setServices] = useState([]);
-
+    console.log(services)
     useEffect(() => {
         fetch(`http://localhost:3000/booked-services?email=${user.email}`)
             .then(res => res.json())
@@ -34,6 +34,7 @@ const BookedServices = () => {
                             <th>Provider Info</th>
                             <th>Service Details</th>
                             <th>Price</th>
+                            <th>Your Instructions</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -46,17 +47,17 @@ const BookedServices = () => {
                                         <div className="avatar">
                                             <div className="mask mask-squircle h-12 w-12">
                                                 <img
-                                                    src={service.service.providerImage}
+                                                    src={service.service?.providerImage}
                                                     alt="Provider"
                                                 />
                                             </div>
                                         </div>
                                         <div>
                                             <div className="font-bold">
-                                                {service.service.providerName}
+                                                {service.service?.providerName}
                                             </div>
                                             <div className="text-sm opacity-50">
-                                                {service.userName}
+                                                {service?.userName}
                                             </div>
                                         </div>
                                     </div>
@@ -64,16 +65,20 @@ const BookedServices = () => {
 
                                 {/* Service Details */}
                                 <td>
-                                    {service.service.name}
+                                    {service.service?.name}
                                     <br />
                                     <span className="badge badge-ghost badge-sm">
-                                        {service.service.description}
+                                        {service.service?.description}
                                     </span>
                                 </td>
 
                                 {/* Price */}
                                 <td>
-                                    {service.service.price.currency} {service.service.price.min} - {service.service.price.max}
+                                    {service.service?.price.currency} {service.service?.price.min} - {service.service?.price.max}
+                                </td>
+                                {/* Price */}
+                                <td>
+                                    {service?.specialInstructions}
                                 </td>
 
                                 {/* Status */}

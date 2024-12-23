@@ -32,7 +32,19 @@ const AddService = () => {
             }
         };
 
-        console.log(newService)
+        // console.log(newService)
+
+        fetch(`http://localhost:3000/services`,{
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newService)
+        })
+        .then(res=>res.json())
+        .then(data => {
+            console.log(data)
+        })
         
         
     };
