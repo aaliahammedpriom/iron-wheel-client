@@ -4,7 +4,7 @@ import registerlottie from '../../assets/lottie/register.json';
 import AuthContext from '../../provider/Provider';
 
 const SignUp = () => {
-    const {registerUser} = useContext(AuthContext);
+    const { registerUser,signInWithGoogle } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -25,19 +25,27 @@ const SignUp = () => {
             );
             return;
         }
-        registerUser(email,password)
-        .then(res=>{
-            console.log(res)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-        setErrorMessage('');
+        registerUser(email, password)
+            .then(res => {
+                console.log(res)
+                setSuccessMessage('Register Success')
+                setErrorMessage('');
+
+            })
+            .catch((err) => {
+                console.log(err);
+                setErrorMessage('Registration failed. Please check your credentials.');
+                setSuccessMessage('')
+            });
         console.log({ name, email, photo, password });
 
         // Clear form fields
         // form.reset();
     };
+
+    const handleGoogleSignIn =()=>{
+        signInWithGoogle();
+      }
 
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -109,10 +117,21 @@ const SignUp = () => {
                         {errorMessage && (
                             <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
                         )}
+                        {successMessage && (
+                            <p className="text-green-500 text-sm mt-2">{successMessage}</p>
+                        )}
                         <div className="form-control mt-6">
                             <button type="submit" className="btn btn-primary">
                                 Submit
                             </button>
+                        </div>
+                        <div className="flex items-center my-4">
+                            <hr className="flex-grow border-t border-gray-300" />
+                            <span className="mx-4 text-gray-500">or</span>
+                            <hr className="flex-grow border-t border-gray-300" />
+                        </div>
+                        <div className="form-control">
+                            <button onClick={handleGoogleSignIn} className="btn btn-primary">Google Login</button>
                         </div>
                     </form>
                 </div>
