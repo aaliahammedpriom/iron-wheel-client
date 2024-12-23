@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import AuthContext from '../../provider/Provider';
 
 const BookService = () => {
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const loadedService = useLoaderData();
   const [service, setService] = useState(loadedService);
@@ -36,6 +37,20 @@ const BookService = () => {
       specialInstructions,
 
     }
+    
+   fetch(`http://localhost:3000/booked-services`,{
+    method:'POST',
+    headers:{
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(bookedService)
+   })
+   .then(res=> res.json())
+   .then(data=>{
+    if(data.acknowledged){
+      navigate('/booked-services')
+    }
+   })
     // console.log(bookedService)
     // console.log({
     //   serviceId,

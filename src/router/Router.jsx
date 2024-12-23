@@ -9,6 +9,7 @@ import ServiceDetails from "../component/services/ServiceDetails";
 import BookService from "../component/bookservice/BookService";
 import PrivateRoute from "./PrivateRoute";
 import AddService from "../component/addService/AddService";
+import BookedServices from "../component/bookedServices/BookedServices";
 
 const router = createBrowserRouter([
    {
@@ -47,6 +48,11 @@ const router = createBrowserRouter([
             path:"/book-services/:id",
             element:<PrivateRoute><BookService></BookService></PrivateRoute>,
             loader:({params})=>fetch(`http://localhost:3000/services/${params.id}`)
+        },
+        {
+            path:"/booked-services",
+            element:<PrivateRoute><BookedServices></BookedServices></PrivateRoute>,
+            // loader:({params})=>fetch(`http://localhost:3000/services/${params.id}`)
         },
     ]
    }
