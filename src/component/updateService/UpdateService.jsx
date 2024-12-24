@@ -1,18 +1,58 @@
-import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 import AuthContext from '../../provider/Provider';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
-const UpdateService = () => {
+const AddService = () => {
     const loadedService = useLoaderData();
-    const {user}= useContext(AuthContext)
+    console.log(loadedService)
+    const { user } = useContext(AuthContext);
+    const [currency, setCurrency] = useState('');
+    const navigate = useNavigate()
 
-    const handleSubmit =  e =>{
-        e.preventDefault
-    }
+    const handleUpdateService = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const initialData = Object.fromEntries(formData.entries());
+
+        const updateService = {
+            "name": initialData.providerName,
+            "email": initialData.email,
+            "image": initialData.providerImage,
+            "location": initialData.location,
+            "image": initialData.image,
+            "name": initialData.name,
+            "description": initialData.description,
+            "providerImage": initialData.providerImage,
+            "providerName": initialData.providerName,
+            "min": initialData.min,
+            "max": initialData.max,
+            "currency": initialData.currency
+        };
+
+        fetch(`http://localhost:3000/services/${loadedService._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateService)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.acknowledged){
+                    navigate('/manage-services')
+                }
+            })
+
+
+
+
+    };
+
     return (
         <div className="w-full max-w-4xl mx-auto bg-base-100 shadow-lg rounded-lg p-8">
-            <h1 className="text-3xl font-bold text-center mb-6">Add a New Service</h1>
-            <form onSubmit={handleSubmit}>
+            <h1 className="text-3xl font-bold text-center mb-6">Update Service</h1>
+            <form onSubmit={handleUpdateService}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Service Info Section */}
                     <div>
@@ -26,6 +66,7 @@ const UpdateService = () => {
                                 placeholder="Image URL"
                                 className="input input-bordered"
                                 name="image"
+                                defaultValue={loadedService.service.image}
                                 required
                             />
                         </div>
@@ -38,6 +79,7 @@ const UpdateService = () => {
                                 placeholder="Service Name"
                                 className="input input-bordered"
                                 name="name"
+                                defaultValue={loadedService.service.name}
                                 required
                             />
                         </div>
@@ -50,6 +92,7 @@ const UpdateService = () => {
                                 placeholder="Min. Price"
                                 className="input input-bordered"
                                 name="min"
+                                defaultValue={loadedService.service.price.min}
                                 required
                             />
                         </div>
@@ -62,6 +105,7 @@ const UpdateService = () => {
                                 placeholder="Max. Price"
                                 className="input input-bordered"
                                 name="max"
+                                defaultValue={loadedService.service.price.max}
                                 required
                             />
                         </div>
@@ -70,10 +114,10 @@ const UpdateService = () => {
                                 <span className="label-text font-medium">Currency</span>
                             </label>
                             <select
-                                value={currency}
                                 onChange={(e) => { setCurrency(e.target.value); }}
                                 className="select select-bordered"
                                 name="currency"
+                                defaultValue={loadedService.service.price.currency}
                                 required
                             >
                                 <option value="" disabled selected>Select Currency</option>
@@ -93,6 +137,7 @@ const UpdateService = () => {
                                 placeholder="Service Area"
                                 className="input input-bordered"
                                 name="location"
+                                defaultValue={loadedService.serviceProvider.location}
                                 required
                             />
                         </div>
@@ -105,6 +150,7 @@ const UpdateService = () => {
                                 className="textarea textarea-bordered"
                                 rows="4"
                                 name="description"
+                                defaultValue={loadedService.service.description}
                                 required
                             ></textarea>
                         </div>
@@ -159,11 +205,11 @@ const UpdateService = () => {
                 </div>
 
                 <div className="text-center mt-6">
-                    <button className="btn btn-primary w-full max-w-xs">Submit</button>
+                    <button className="btn btn-primary w-full max-w-xs">Update</button>
                 </div>
             </form>
         </div>
     );
 };
 
-export default UpdateService;
+export default AddService;
