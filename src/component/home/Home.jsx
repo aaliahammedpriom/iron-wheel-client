@@ -1,11 +1,17 @@
 import React from 'react';
 import Banner from '../home/Banner'
+import PopularService from './PopularService';
+import ReviewCards from './ReviewCards';
+import HeavyDutyTrivia from './HeavyDutyTrivia';
 
 const Home = () => {
+    
     return (
-        <div>
+        <div >
             <Banner></Banner>
-            <h2>this is home</h2>
+            <PopularService></PopularService>
+            <ReviewCards></ReviewCards>
+            <HeavyDutyTrivia></HeavyDutyTrivia>
         </div>
     );
 };

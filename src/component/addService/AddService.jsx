@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
 import AuthContext from '../../provider/Provider';
+import { useNavigate } from 'react-router-dom';
 
 const AddService = () => {
     const { user } = useContext(AuthContext);
     const [currency, setCurrency] = useState('');
+    const navigate = useNavigate()
 
     const handleAddService = (e) => {
         e.preventDefault();
@@ -44,6 +46,7 @@ const AddService = () => {
         .then(res=>res.json())
         .then(data => {
             console.log(data)
+            navigate('/manage-services')
         })
         
         

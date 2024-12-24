@@ -1,26 +1,26 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const slides = [
   {
     id: 1,
-    image: "https://i.ibb.co.com/N9sR04B/logo2.webp",
+    image: "https://i.ibb.co.com/StzP4Pv/1.jpg",
     title: "Welcome to IronWheel",
-    description: "Experience the best quality servicess all your needs.",
+    description: "Experience the best quality services for all your needs.",
     buttonText: "LogIn",
   },
   {
     id: 2,
-    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg2MStZI-XS7RUf5ilgCb4s3Iw1irIy1hyphenhyphenyTyLdbsOBEpTBVidyxFkzNF-w_fJCVVDwHGBO-jWpFQzhjK5DebCXZqlalv3KVYEnNROl-8X3pMb5w39zOIL-91fsT96tXSaltUiYc6uOO5Y/s1600/movie-time-hey-im-with-the-band-blog.png",
+    image: "https://i.ibb.co.com/MsdgKJP/2.jpg",
     title: "Add Your Service",
-    description: "Business with Us your everyday life.",
-    buttonText: "All Servicess",
+    description: "Business with us for your everyday life.",
+    buttonText: "All Services",
   },
   {
     id: 3,
-    image: "https://preview.redd.it/if-i-could-only-see-maybe-4-or-5-of-these-movies-before-the-v0-mbjrdiz7129c1.jpeg?width=1080&crop=smart&auto=webp&s=f150215e486493e125720fa34d56c8e4aeb237b3",
+    image: "https://i.ibb.co.com/4jWdG41/3.jpg",
     title: "Rent Your Service",
-    description: "Explore Service and add them.",
+    description: "Explore services and add them.",
     buttonText: "Explore Now",
   },
 ];
@@ -46,13 +46,14 @@ const Banner = () => {
 
   return (
     <div className="relative w-full md:h-screen overflow-hidden bg-gray-900">
-      {/* Slides */}
-      <div
+      {/* Slides with framer-motion */}
+      <motion.div
         className="flex transition-transform duration-1000 ease-in-out"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        animate={{ x: `-${currentIndex * 100}%` }}
+        transition={{ duration: 1 }}
       >
         {slides.map((slide, index) => (
-          <div
+          <motion.div
             key={slide.id}
             className={`w-full h-screen flex-shrink-0 relative ${
               currentIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-95"
@@ -71,9 +72,9 @@ const Banner = () => {
                 {slide.description}
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Navigation Buttons */}
       <button

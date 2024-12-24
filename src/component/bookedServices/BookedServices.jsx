@@ -78,7 +78,8 @@ const BookedServices = () => {
                                 </td>
                                 {/* Price */}
                                 <td>
-                                    {service?.specialInstructions}
+                                    <p>{service?.specialInstructions}</p>
+                                    <p>Date:{service?.serviceDate}</p>
                                 </td>
 
                                 {/* Status */}

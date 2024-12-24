@@ -10,6 +10,7 @@ import BookService from "../component/bookservice/BookService";
 import PrivateRoute from "./PrivateRoute";
 import AddService from "../component/addService/AddService";
 import BookedServices from "../component/bookedServices/BookedServices";
+import ManageServices from "../component/manageService/ManageServices";
 
 const router = createBrowserRouter([
    {
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
         {
             path:"/add-service",
             element:<PrivateRoute><AddService></AddService></PrivateRoute>,
+            
+        },
+        {
+            path:"/manage-services",
+            element:<PrivateRoute><ManageServices></ManageServices></PrivateRoute>,
             
         },
         {
