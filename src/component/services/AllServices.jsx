@@ -3,7 +3,8 @@ import ServiceCard from './ServiceCard';
 
 const AllServices = () => {
   const [services, setServices] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(''); // State for the search term
+  const [searchTerm, setSearchTerm] = useState(''); 
+  
 
   // Fetch all services
   useEffect(() => {

@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../provider/Provider';
+import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const ManageServices = () => {
     const [services, setServices] = useState([]);
@@ -18,10 +20,40 @@ const ManageServices = () => {
         console.log('Edit service with ID:', id);
     };
 
-    const handleDelete = (id) => {
-        // Logic for deleting service
-        console.log('Delete service with ID:', id);
-    };
+    const handleDelete = (_id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/services/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.acknowledged) {
+                            fetch(`http://localhost:3000/services?email=${user.email}`)
+                                .then((res) => res.json())
+                                .then((data) => {
+                                    setServices(data);
+                                });
+                        }
+                    })
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+                // navigate('/')
+            }
+        });
+
+    }
 
     return (
         <div className="p-5">
@@ -62,12 +94,12 @@ const ManageServices = () => {
                                 {service.serviceProvider.name}
                             </p>
                             <div className="card-actions flex justify-end">
-                                <button
+                                <Link
                                     className="btn btn-primary btn-sm mx-1"
-                                    onClick={() => handleEdit(service._id)}
+                                    to={`/update-service/${service._id}`}
                                 >
-                                    Edit
-                                </button>
+                                    Update
+                                </Link>
                                 <button
                                     className="btn btn-error btn-sm mx-1"
                                     onClick={() => handleDelete(service._id)}
