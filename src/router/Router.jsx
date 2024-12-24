@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import AddService from "../component/addService/AddService";
 import BookedServices from "../component/bookedServices/BookedServices";
 import ManageServices from "../component/manageService/ManageServices";
+import ServiceToDo from "../component/serviceToDo/ServiceToDo";
 
 const router = createBrowserRouter([
    {
@@ -48,6 +49,11 @@ const router = createBrowserRouter([
         {
             path:"/manage-services",
             element:<PrivateRoute><ManageServices></ManageServices></PrivateRoute>,
+            
+        },
+        {
+            path:"/todo",
+            element:<PrivateRoute><ServiceToDo></ServiceToDo></PrivateRoute>,
             
         },
         {

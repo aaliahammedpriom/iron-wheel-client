@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../provider/Provider';
 
-const ManageServices = () => {
+const ServiceToDo = () => {
     const [services, setServices] = useState([]);
     const { user } = useContext(AuthContext);
 
@@ -83,4 +83,4 @@ const ManageServices = () => {
     );
 };
 
-export default ManageServices;
+export default ServiceToDo;
