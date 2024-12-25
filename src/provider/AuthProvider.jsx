@@ -11,22 +11,23 @@ const AuthProvider = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
 
     const registerUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password);
         setLoading(true)
+        return createUserWithEmailAndPassword(auth, email, password);
     }
     const signInUser = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password)
         setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password)
     }
     const signInWithGoogle = () => {
-        return signInWithPopup(auth, googleProvider)
         setLoading(true)
+        return signInWithPopup(auth, googleProvider)
     }
-    const updateUserProfileOnReg =(name, photo)=>{
+    const updateUserProfileOnReg = (name, photo) => {
+        setLoading(true)
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
-          })
-          setLoading(true)
+        })
+        
     }
     const signOutUser = () => {
         return signOut(auth)
@@ -36,15 +37,22 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser)
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
-                axios.post(`http://localhost:3000/jwt`, user,{withCredentials:true})
+                axios.post(`http://localhost:3000/jwt`, user, { withCredentials: true })
                     .then(res => {
-                        console.log(res.data)
+                        console.log("login", res.data)
+                        setLoading(false)
+
+                    })
+            }
+            else {
+                axios.post(`http://localhost:3000/logout`, {}, { withCredentials: true })
+                    .then(res => {
+                        console.log("logout", res.data)
                         setLoading(false)
 
                     })
             }
             // console.log(currentUser)
-            setLoading(false)
         })
         return () => {
             unsubscribe();
