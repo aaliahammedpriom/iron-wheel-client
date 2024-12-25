@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../provider/Provider';
+import axios from 'axios';
 
 const BookedServices = () => {
     const { user } = useContext(AuthContext);
     const [services, setServices] = useState([]);
     console.log(services);
+    const userEmail = user.email;
 
     useEffect(() => {
-        fetch(`http://localhost:3000/booked-services?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setServices(data);
-            });
+        axios(`http://localhost:3000/booked-services?email=${user.email}`,{ withCredentials: true })
+            .then(res => setServices(res.data))
+            
     }, [user]);
 
     if (services.length === 0) {

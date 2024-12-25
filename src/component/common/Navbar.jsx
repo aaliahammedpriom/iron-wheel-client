@@ -8,7 +8,7 @@ const Navbar = () => {
     const { toggle, setToggle } = useContext(AuthContext)
     const navigate = useNavigate();
     const { user, signOutUser } = useContext(AuthContext);
-    console.log(user)
+    // console.log(user)
     const handleSignOut = () => {
         signOutUser()
             .then(res => {
