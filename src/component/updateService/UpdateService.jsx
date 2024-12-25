@@ -151,6 +151,7 @@ const AddService = () => {
                                 rows="4"
                                 name="description"
                                 defaultValue={loadedService.service.description}
+                                maxLength="100"
                                 required
                             ></textarea>
                         </div>

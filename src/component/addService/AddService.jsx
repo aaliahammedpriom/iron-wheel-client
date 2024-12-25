@@ -9,12 +9,12 @@ const AddService = () => {
 
     const handleAddService = (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData(e.target);
         const initialData = Object.fromEntries(formData.entries());
-        
+
         const newService = {
-           "serviceProvider": {
+            "serviceProvider": {
                 "name": initialData.providerName,  // providerName from form
                 "email": initialData.email,  // email from form
                 "image": initialData.providerImage,  // providerImage from form
@@ -36,20 +36,20 @@ const AddService = () => {
 
         // console.log(newService)
 
-        fetch(`http://localhost:3000/services`,{
+        fetch(`http://localhost:3000/services`, {
             method: 'POST',
-            headers:{
+            headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(newService)
         })
-        .then(res=>res.json())
-        .then(data => {
-            console.log(data)
-            navigate('/manage-services')
-        })
-        
-        
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                navigate('/manage-services')
+            })
+
+
     };
 
     return (
@@ -149,7 +149,10 @@ const AddService = () => {
                                 rows="4"
                                 name="description"
                                 required
+                                maxLength="100"
                             ></textarea>
+
+
                         </div>
                     </div>
 

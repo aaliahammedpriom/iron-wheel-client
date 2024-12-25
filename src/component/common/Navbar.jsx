@@ -5,7 +5,7 @@ import { MdDarkMode } from 'react-icons/md';
 import { CiLight } from 'react-icons/ci';
 
 const Navbar = () => {
-    const {toggle , setToggle}  = useContext(AuthContext)
+    const { toggle, setToggle } = useContext(AuthContext)
     const navigate = useNavigate();
     const { user, signOutUser } = useContext(AuthContext);
     console.log(user)
@@ -20,52 +20,52 @@ const Navbar = () => {
             })
 
     }
-    const handleToggle = ()=>{
+    const handleToggle = () => {
         setToggle(!toggle)
     }
     const links = <>
         <li><Link to={"/"}>Home</Link></li>
         <li><Link to={"/services"}>Services</Link></li>
         <li>
-        <details className="  bg-base-100  rounded-md z-50">
-  <summary className="cursor-pointer  hover:text-primary">
-    Dashboard
-  </summary>
-  <ul className="p-2 space-y-2">
-    <li>
-      <Link
-        to="/add-service"
-        className="block text-sm font-medium text-gray-700 hover:text-primary"
-      >
-        Add Service
-      </Link>
-    </li>
-    <li>
-      <Link
-        to="/manage-services"
-        className="block text-sm font-medium text-gray-700 hover:text-primary"
-      >
-        Manage Service
-      </Link>
-    </li>
-    <li>
-      <Link
-        to="/booked-services"
-        className="block text-sm font-medium text-gray-700 hover:text-primary"
-      >
-        Booked Service
-      </Link>
-    </li>
-    <li>
-      <Link
-        to="/todo"
-        className="block text-sm font-medium text-gray-700 hover:text-primary"
-      >
-        To Do Service
-      </Link>
-    </li>
-  </ul>
-</details>
+            <details className="  bg-base-100  rounded-md z-50">
+                <summary className="cursor-pointer  hover:text-primary">
+                    Dashboard
+                </summary>
+                <ul className="p-2 space-y-2">
+                    <li>
+                        <Link
+                            to="/add-service"
+                            className="block text-sm font-medium text-gray-700 hover:text-primary"
+                        >
+                            Add Service
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/manage-services"
+                            className="block text-sm font-medium text-gray-700 hover:text-primary"
+                        >
+                            Manage Service
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/booked-services"
+                            className="block text-sm font-medium text-gray-700 hover:text-primary"
+                        >
+                            Booked Service
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/todo"
+                            className="block text-sm font-medium text-gray-700 hover:text-primary"
+                        >
+                            To Do Service
+                        </Link>
+                    </li>
+                </ul>
+            </details>
 
         </li>
     </>
@@ -108,7 +108,7 @@ const Navbar = () => {
                 <div className="navbar-end flex gap-3">
 
 
-                    <button onClick={handleToggle} className=' mx-3'>{toggle? <CiLight className='text-yellow-300 text-3xl' />:<MdDarkMode className='text-yellow-300 text-3xl' />}</button>
+                    <button onClick={handleToggle} className=' mx-3'>{toggle ? <CiLight className='text-yellow-300 text-3xl' /> : <MdDarkMode className='text-yellow-300 text-3xl' />}</button>
 
                     {user?.email ? <div className=" group ">
                         {/* user img */}
@@ -116,6 +116,7 @@ const Navbar = () => {
                             {
                                 user?.photoURL ?
                                     <img className="rounded-full  "
+                                        referrerPolicy="no-referrer"
                                         alt=""
                                         src={user?.photoURL} /> :
                                     <img className="rounded-full animate__animated animate__pulse animate animate__infinite "
@@ -127,7 +128,7 @@ const Navbar = () => {
 
                         </div>
                         <div className="absolute right-0 top-0  bg-gray-800 text-white text-xs rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-3">
-                            {user?.displayName|| "No User Name"}
+                            {user?.displayName || "No User Name"}
                             <button onClick={handleSignOut} className="link link-hover text-white">SignOut </button>
                         </div>
                     </div> : ""}

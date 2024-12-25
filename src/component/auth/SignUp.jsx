@@ -2,12 +2,15 @@ import Lottie from 'lottie-react';
 import React, { useContext, useState } from 'react';
 import registerlottie from '../../assets/lottie/register.json';
 import AuthContext from '../../provider/Provider';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-    const { registerUser,signInWithGoogle } = useContext(AuthContext);
+    const { registerUser, signInWithGoogle, updateUserProfileOnReg } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -26,11 +29,14 @@ const SignUp = () => {
             return;
         }
         registerUser(email, password)
-            .then(res => {
-                console.log(res)
+            .then(() => {
+
                 setSuccessMessage('Register Success')
                 setErrorMessage('');
-
+                updateUserProfileOnReg(name, photo)
+                    .then(() => {
+                        navigate(location.state || '/' )
+                    })
             })
             .catch((err) => {
                 console.log(err);
@@ -43,9 +49,9 @@ const SignUp = () => {
         // form.reset();
     };
 
-    const handleGoogleSignIn =()=>{
+    const handleGoogleSignIn = () => {
         signInWithGoogle();
-      }
+    }
 
     return (
         <div className="hero bg-base-200 min-h-screen">

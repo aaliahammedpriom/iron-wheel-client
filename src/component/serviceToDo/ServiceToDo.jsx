@@ -25,7 +25,7 @@ const ManageServices = () => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3000/booked-services`)
+    fetch(`http://localhost:3000/manage-todo-services`)
       .then((res) => res.json())
       .then((data) => {
         // Filter services where serviceProvider.email matches user.email

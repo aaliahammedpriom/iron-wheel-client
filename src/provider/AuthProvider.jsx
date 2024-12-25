@@ -5,13 +5,13 @@ import auth from '../firebase/firebase.init';
 import axios from 'axios';
 
 const AuthProvider = ({ children }) => {
-    const [toggle, setToggle] = useState(true);
+    const [toggle, setToggle] = useState(false);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
 
     const registerUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
+        return createUserWithEmailAndPassword(auth, email, password);
         setLoading(true)
     }
     const signInUser = (email, password) => {
@@ -22,6 +22,12 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider)
         setLoading(true)
     }
+    const updateUserProfileOnReg =(name, photo)=>{
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+          })
+          setLoading(true)
+    }
     const signOutUser = () => {
         return signOut(auth)
     }
@@ -30,7 +36,7 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser)
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
-                axios.post(`http://localhost:3000/jwt`, user)
+                axios.post(`http://localhost:3000/jwt`, user,{withCredentials:true})
                     .then(res => {
                         console.log(res.data)
                         setLoading(false)
@@ -38,7 +44,7 @@ const AuthProvider = ({ children }) => {
                     })
             }
             // console.log(currentUser)
-            // setLoading(false)
+            setLoading(false)
         })
         return () => {
             unsubscribe();
@@ -51,6 +57,7 @@ const AuthProvider = ({ children }) => {
         signInUser,
         signOutUser,
         signInWithGoogle,
+        updateUserProfileOnReg,
         toggle,
         setToggle
     }

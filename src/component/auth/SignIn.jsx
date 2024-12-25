@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   console.log(location.state)
   const { signInUser,signInWithGoogle } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState('');
