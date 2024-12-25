@@ -10,5 +10,8 @@ export default {
     extend: {},
   },
   plugins: [daisyui],
+  daisyui: {
+    themes: ['light', 'dark', 'cupcake'], // Add or modify themes here
+  },
 }
 

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../common/Navbar';
 import Footer from '../common/Footer';
 import { motion, useScroll, useSpring } from 'framer-motion';
+import AuthContext from '../../provider/Provider';
 
 const MainLayout = () => {
+    const { toggle } = useContext(AuthContext);
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
         stiffness: 100,
@@ -13,7 +15,11 @@ const MainLayout = () => {
     });
 
     return (
-        <div className="max-w-7xl mx-auto">
+        <div
+            className="max-w-7xl mx-auto"
+            data-theme={toggle ? "dark" : "light"}
+        >
+
             {/* Scroll Progress Bar */}
             <motion.div
                 style={{ scaleX }}

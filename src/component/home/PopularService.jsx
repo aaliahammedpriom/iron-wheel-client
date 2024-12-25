@@ -27,7 +27,7 @@ const PopularService = () => {
         Our Popular Services
       </motion.h2>
 
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid md:grid-cols-2 gap-5">
         {services.map((service) => (
           <motion.div
             key={service._id}

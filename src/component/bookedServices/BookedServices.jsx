@@ -4,7 +4,8 @@ import AuthContext from '../../provider/Provider';
 const BookedServices = () => {
     const { user } = useContext(AuthContext);
     const [services, setServices] = useState([]);
-    console.log(services)
+    console.log(services);
+
     useEffect(() => {
         fetch(`http://localhost:3000/booked-services?email=${user.email}`)
             .then(res => res.json())
@@ -24,10 +25,10 @@ const BookedServices = () => {
     }
 
     return (
-        <div>
-            <h2 className="text-3xl text-center">My Booking: {services.length}</h2>
+        <div className="px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl text-center my-4">My Booking: {services.length}</h2>
             <div className="overflow-x-auto">
-                <table className="table">
+                <table className="table table-zebra w-full">
                     {/* Table Head */}
                     <thead>
                         <tr>
@@ -45,7 +46,7 @@ const BookedServices = () => {
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
-                                            <div className="mask mask-squircle h-12 w-12">
+                                            <div className="mask mask-squircle h-10 w-10 sm:h-12 sm:w-12">
                                                 <img
                                                     src={service.service?.providerImage}
                                                     alt="Provider"
@@ -53,10 +54,10 @@ const BookedServices = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold">
+                                            <div className="font-bold text-sm sm:text-base">
                                                 {service.service?.providerName}
                                             </div>
-                                            <div className="text-sm opacity-50">
+                                            <div className="text-xs sm:text-sm opacity-50">
                                                 {service?.userName}
                                             </div>
                                         </div>
@@ -65,8 +66,7 @@ const BookedServices = () => {
 
                                 {/* Service Details */}
                                 <td>
-                                    {service.service?.name}
-                                    <br />
+                                    <div className="text-sm sm:text-base">{service.service?.name}</div>
                                     <span className="badge badge-ghost badge-sm">
                                         {service.service?.description}
                                     </span>
@@ -74,17 +74,20 @@ const BookedServices = () => {
 
                                 {/* Price */}
                                 <td>
-                                    {service.service?.price.currency} {service.service?.price.min} - {service.service?.price.max}
+                                    <div className="text-sm sm:text-base">
+                                        {service.service?.price.currency} {service.service?.price.min} - {service.service?.price.max}
+                                    </div>
                                 </td>
-                                {/* Price */}
+
+                                {/* Instructions */}
                                 <td>
-                                    <p>{service?.specialInstructions}</p>
-                                    <p>Date:{service?.serviceDate}</p>
+                                    <p className="text-xs sm:text-sm">{service?.specialInstructions}</p>
+                                    <p className="text-xs sm:text-sm">Date: {service?.serviceDate}</p>
                                 </td>
 
                                 {/* Status */}
                                 <td>
-                                    <button className="btn btn-ghost btn-xs">
+                                    <button className="btn btn-ghost btn-xs sm:btn-sm">
                                         {service.serviceStatus}
                                     </button>
                                 </td>
