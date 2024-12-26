@@ -1,12 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 
 const ServiceDetails = () => {
   const loadedService = useLoaderData();
   const [service, setService] = useState(loadedService);
 
-  
   // Destructure service and serviceProvider data
   const {
     serviceProvider: { name: providerName, image: providerImage, location },

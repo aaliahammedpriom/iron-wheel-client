@@ -66,7 +66,7 @@ const router = createBrowserRouter([
                 path: "/services/:id",
                 element: <PrivateRoute><ServiceDetails></ServiceDetails></PrivateRoute>,
                 loader: async ({ params }) => {
-                    const response = await axios(`http://localhost:3000/services/${params.id}`);
+                    const response = await axios(`http://localhost:3000/services/${params.id}`, { withCredentials: true });
                     const data = response.data; // Directly access the JSON data from the response
                     setDocumentTitle(data.name || "Service Details | Iron Wheel"); // Set the document title
                     return data; // Return the fetched data
@@ -85,10 +85,18 @@ const router = createBrowserRouter([
                 path: "/update-service/:id",
                 element: <PrivateRoute><UpdateService></UpdateService></PrivateRoute>,
                 loader: async ({ params }) => {
-                    const response = await fetch(`http://localhost:3000/services/${params.id}`);
-                    const data = await response.json();
-                    setDocumentTitle(`Update ${data.name}` || "Update Service | Iron Wheel");
-                    return data;
+                    try {
+                        const response = await axios.get(`http://localhost:3000/services/${params.id}`, {
+                            withCredentials: true // Ensures cookies (e.g., session or JWT tokens) are sent with the request
+                        });
+                        const data = response.data; // Axios automatically parses the response as JSON
+                        setDocumentTitle(`Update ${data.name}` || "Update Service | Iron Wheel");
+                        return data;
+                    } catch (error) {
+                        console.error("Error fetching service data:", error);
+                        // Handle error or return a default value
+                        return {};
+                    }
                 },
             },
             {
@@ -111,8 +119,8 @@ const router = createBrowserRouter([
                 path: "/book-services/:id",
                 element: <PrivateRoute><BookService></BookService></PrivateRoute>,
                 loader: async ({ params }) => {
-                    const response = await fetch(`http://localhost:3000/services/${params.id}`);
-                    const data = await response.json();
+                    const response = await axios.get(`http://localhost:3000/services/${params.id}`, { withCredentials: true });
+                    const data = response.data; // Axios automatically parses the response as JSON
                     setDocumentTitle(`Book ${data.name}` || "Book Service | Iron Wheel");
                     return data;
                 },

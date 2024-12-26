@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA8IWz93eNilR-KPoFhbuTywdD-dd5i6zY",
-  authDomain: "iron-wheel.firebaseapp.com",
-  projectId: "iron-wheel",
-  storageBucket: "iron-wheel.firebasestorage.app",
-  messagingSenderId: "188781713556",
-  appId: "1:188781713556:web:89d4bb20abc5fb92d13c81"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

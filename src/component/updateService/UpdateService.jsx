@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import AuthContext from '../../provider/Provider';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const AddService = () => {
     const loadedService = useLoaderData();
-    console.log(loadedService)
+    // console.log(loadedService)
     const { user } = useContext(AuthContext);
     const [currency, setCurrency] = useState('');
     const navigate = useNavigate()
@@ -30,17 +31,15 @@ const AddService = () => {
             "currency": initialData.currency
         };
 
-        fetch(`http://localhost:3000/services/${loadedService._id}`, {
-            method: 'PUT',
+        axios.put(`http://localhost:3000/services/${loadedService._id}`, updateService, {
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(updateService)
+            withCredentials: true // Ensures cookies (e.g., session or JWT tokens) are sent with the request
         })
-            .then(res => res.json())
-            .then(data => {
-                if(data.acknowledged){
-                    navigate('/manage-services')
+            .then(response => {
+                if (response.data.acknowledged) {
+                    navigate('/manage-services'); // Navigate to the manage services page if the update is acknowledged
                 }
             })
 

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../provider/Provider';
 
 const ServiceCard = ({ service }) => {
+  const {user}= useContext(AuthContext);
+  // console.log(user)
   const {
     serviceProvider: { name: providerName, image: providerImage, location },
     service: {
@@ -44,7 +47,7 @@ const ServiceCard = ({ service }) => {
         </div>
 
         <div className="card-actions justify-end mt-4">
-          <Link to={`/services/${_id}`} className="btn btn-primary">View Details</Link>
+          <Link to={user? `/services/${_id}` : '/signin'} className="btn btn-primary">View Details</Link>
         </div>
       </div>
     </div>

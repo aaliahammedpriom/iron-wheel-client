@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import AuthContext from '../../provider/Provider';
+import axios from 'axios';
 
 const BookService = () => {
   const navigate = useNavigate();
@@ -38,19 +39,29 @@ const BookService = () => {
 
     }
     
-   fetch(`http://localhost:3000/booked-services`,{
-    method:'POST',
-    headers:{
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify(bookedService)
-   })
-   .then(res=> res.json())
-   .then(data=>{
-    if(data.acknowledged){
-      navigate('/booked-services')
+  //  fetch(`http://localhost:3000/booked-services`,{
+  //   method:'POST',
+  //   headers:{
+  //     'content-type': 'application/json'
+  //   },
+  //   body: JSON.stringify(bookedService),
+  //  })
+  //  .then(res=> res.json())
+  //  .then(data=>{
+  //   if(data.acknowledged){
+  //     navigate('/booked-services')
+  //   }
+  //  })
+
+   axios.post('http://localhost:3000/booked-services', bookedService, { withCredentials: true })
+  .then(response => {
+    if (response.data.acknowledged) {
+      navigate('/booked-services');
     }
-   })
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
     // console.log(bookedService)
     // console.log({
     //   serviceId,

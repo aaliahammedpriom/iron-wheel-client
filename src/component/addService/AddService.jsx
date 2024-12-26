@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import AuthContext from '../../provider/Provider';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const AddService = () => {
     const { user } = useContext(AuthContext);
@@ -36,18 +37,16 @@ const AddService = () => {
 
         // console.log(newService)
 
-        fetch(`http://localhost:3000/services`, {
-            method: 'POST',
+        axios.post('http://localhost:3000/services', newService, {
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(newService)
+            withCredentials: true 
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                navigate('/manage-services')
-            })
+        .then(response => {
+            // console.log(response.data);
+            navigate('/manage-services'); 
+        })
 
 
     };

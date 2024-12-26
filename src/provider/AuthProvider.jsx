@@ -10,6 +10,8 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
 
+
+
     const registerUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password);
@@ -27,7 +29,7 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
         })
-        
+
     }
     const signOutUser = () => {
         return signOut(auth)
@@ -35,11 +37,13 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
+            // console.log(currentUser)
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
                 axios.post(`http://localhost:3000/jwt`, user, { withCredentials: true })
                     .then(res => {
-                        console.log("login", res.data)
+                        // console.log("login", res.data)
+
                         setLoading(false)
 
                     })

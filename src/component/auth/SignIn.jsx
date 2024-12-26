@@ -7,7 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 const SignIn = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location.state)
+  // console.log(location.state)
   const { signInUser,signInWithGoogle } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -30,28 +30,28 @@ const SignIn = () => {
 
     signInUser(email, password)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setSuccessMessage('Login successful!');
         setErrorMessage('');
         navigate(location.state || '/' )
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setErrorMessage('Login failed. Please check your credentials.');
         setSuccessMessage('')
 
       });
 
-    console.log({ email, password });
+    // console.log({ email, password });
   };
   const handleGoogleSignIn =()=>{
     signInWithGoogle()
     .then(res =>{
-      console.log(res)
+      // console.log(res)
       navigate(location.state || '/' )
     })
     .catch(err=>{
-      console.log(err)
+      // console.log(err)
     })
   }
 

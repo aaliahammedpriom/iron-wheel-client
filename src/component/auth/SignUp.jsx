@@ -39,11 +39,11 @@ const SignUp = () => {
                     })
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
                 setErrorMessage('Registration failed. Please check your credentials.');
                 setSuccessMessage('')
             });
-        console.log({ name, email, photo, password });
+        // console.log({ name, email, photo, password });
 
         // Clear form fields
         // form.reset();

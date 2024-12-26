@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../provider/Provider';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const ManageServices = () => {
     const [services, setServices] = useState([]);
@@ -17,7 +18,7 @@ const ManageServices = () => {
 
     const handleEdit = (id) => {
         // Logic for editing service
-        console.log('Edit service with ID:', id);
+        // console.log('Edit service with ID:', id);
     };
 
     const handleDelete = (_id) => {
@@ -31,25 +32,32 @@ const ManageServices = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/services/${_id}`, {
-                    method: 'DELETE'
+                axios.delete(`http://localhost:3000/services/${_id}`, {
+                    withCredentials: true // Ensures cookies (like session or JWT tokens) are sent with the request
                 })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.acknowledged) {
-                            fetch(`http://localhost:3000/services?email=${user.email}`)
-                                .then((res) => res.json())
-                                .then((data) => {
-                                    setServices(data);
+                    .then(res => {
+                        if (res.data.acknowledged) {
+                            axios.get(`http://localhost:3000/services?email=${user.email}`, {
+                                withCredentials: true // Send cookies with this request as well
+                            })
+                                .then(response => {
+                                    setServices(response.data);
+                                })
+                                .catch(error => {
+                                    console.error("Error fetching services:", error);
                                 });
                         }
                     })
+                    .catch(error => {
+                        console.error("Error deleting service:", error);
+                    });
+
                 Swal.fire({
                     title: "Deleted!",
                     text: "Your file has been deleted.",
                     icon: "success"
                 });
-                // navigate('/')
+                // navigate('/');
             }
         });
 

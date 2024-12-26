@@ -5,7 +5,7 @@ import axios from 'axios';
 const BookedServices = () => {
     const { user } = useContext(AuthContext);
     const [services, setServices] = useState([]);
-    console.log(services);
+    // console.log(services);
     const userEmail = user.email;
 
     useEffect(() => {

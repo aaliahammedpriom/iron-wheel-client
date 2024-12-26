@@ -12,11 +12,11 @@ const Navbar = () => {
     const handleSignOut = () => {
         signOutUser()
             .then(res => {
-                console.log(res)
+                // console.log(res)
 
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
             })
 
     }
@@ -26,48 +26,50 @@ const Navbar = () => {
     const links = <>
         <li><Link to={"/"}>Home</Link></li>
         <li><Link to={"/services"}>Services</Link></li>
-        <li>
-            <details className="  bg-base-100  rounded-md z-50">
-                <summary className="cursor-pointer  hover:text-primary">
-                    Dashboard
-                </summary>
-                <ul className="p-2 space-y-2">
-                    <li>
-                        <Link
-                            to="/add-service"
-                            className="block text-sm font-medium text-gray-700 hover:text-primary"
-                        >
-                            Add Service
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/manage-services"
-                            className="block text-sm font-medium text-gray-700 hover:text-primary"
-                        >
-                            Manage Service
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/booked-services"
-                            className="block text-sm font-medium text-gray-700 hover:text-primary"
-                        >
-                            Booked Service
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/todo"
-                            className="block text-sm font-medium text-gray-700 hover:text-primary"
-                        >
-                            To Do Service
-                        </Link>
-                    </li>
-                </ul>
-            </details>
-
-        </li>
+        {
+            user?.email? (<li>
+                <details className="  bg-base-100  rounded-md z-50">
+                    <summary className="cursor-pointer  hover:text-primary">
+                        Dashboard
+                    </summary>
+                    <ul className="p-2 space-y-2">
+                        <li>
+                            <Link
+                                to="/add-service"
+                                className="block text-sm font-medium text-gray-700 hover:text-primary"
+                            >
+                                Add Service
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/manage-services"
+                                className="block text-sm font-medium text-gray-700 hover:text-primary"
+                            >
+                                Manage Service
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/booked-services"
+                                className="block text-sm font-medium text-gray-700 hover:text-primary"
+                            >
+                                Booked Service
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/todo"
+                                className="block text-sm font-medium text-gray-700 hover:text-primary"
+                            >
+                                To Do Service
+                            </Link>
+                        </li>
+                    </ul>
+                </details>
+    
+            </li>): ''
+        }
     </>
 
     return (
