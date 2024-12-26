@@ -58,7 +58,7 @@ const router = createBrowserRouter([
                 element: <AllServices></AllServices>,
                 loader: async () => {
                     setDocumentTitle("All Services | Iron Wheel");
-                    const response = await fetch(`http://localhost:3000/services`);
+                    const response = await fetch(`https://iron-wheel.vercel.app/services`);
                     return response.json();
                 },
             },
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
                 path: "/services/:id",
                 element: <PrivateRoute><ServiceDetails></ServiceDetails></PrivateRoute>,
                 loader: async ({ params }) => {
-                    const response = await axios(`http://localhost:3000/services/${params.id}`, { withCredentials: true });
+                    const response = await axios(`https://iron-wheel.vercel.app/services/${params.id}`, { withCredentials: true });
                     const data = response.data; // Directly access the JSON data from the response
                     setDocumentTitle(data.name || "Service Details | Iron Wheel"); // Set the document title
                     return data; // Return the fetched data
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><UpdateService></UpdateService></PrivateRoute>,
                 loader: async ({ params }) => {
                     try {
-                        const response = await axios.get(`http://localhost:3000/services/${params.id}`, {
+                        const response = await axios.get(`https://iron-wheel.vercel.app/services/${params.id}`, {
                             withCredentials: true // Ensures cookies (e.g., session or JWT tokens) are sent with the request
                         });
                         const data = response.data; // Axios automatically parses the response as JSON
@@ -119,7 +119,7 @@ const router = createBrowserRouter([
                 path: "/book-services/:id",
                 element: <PrivateRoute><BookService></BookService></PrivateRoute>,
                 loader: async ({ params }) => {
-                    const response = await axios.get(`http://localhost:3000/services/${params.id}`, { withCredentials: true });
+                    const response = await axios.get(`https://iron-wheel.vercel.app/services/${params.id}`, { withCredentials: true });
                     const data = response.data; // Axios automatically parses the response as JSON
                     setDocumentTitle(`Book ${data.name}` || "Book Service | Iron Wheel");
                     return data;

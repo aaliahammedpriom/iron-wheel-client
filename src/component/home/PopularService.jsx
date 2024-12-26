@@ -7,7 +7,7 @@ const PopularService = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/services`)
+    fetch(`https://iron-wheel.vercel.app/services`)
       .then(res => res.json())
       .then(data => {
         // Shuffle the services array and pick 6 random ones

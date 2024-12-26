@@ -9,7 +9,7 @@ const ManageServices = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/services?email=${user.email}`)
+        fetch(`https://iron-wheel.vercel.app/services?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setServices(data);
@@ -32,12 +32,12 @@ const ManageServices = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:3000/services/${_id}`, {
+                axios.delete(`https://iron-wheel.vercel.app/services/${_id}`, {
                     withCredentials: true // Ensures cookies (like session or JWT tokens) are sent with the request
                 })
                     .then(res => {
                         if (res.data.acknowledged) {
-                            axios.get(`http://localhost:3000/services?email=${user.email}`, {
+                            axios.get(`https://iron-wheel.vercel.app/services?email=${user.email}`, {
                                 withCredentials: true // Send cookies with this request as well
                             })
                                 .then(response => {

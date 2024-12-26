@@ -13,7 +13,7 @@ const ManageServices = () => {
       status: e.target.value
     }
     
-    axios.patch(`http://localhost:3000/booked-services/${_id}`, data, {
+    axios.patch(`https://iron-wheel.vercel.app/booked-services/${_id}`, data, {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -29,7 +29,7 @@ const ManageServices = () => {
   }
 
   useEffect(() => {
-    axios(`http://localhost:3000/manage-todo-services`, { withCredentials: true })
+    axios(`https://iron-wheel.vercel.app/manage-todo-services`, { withCredentials: true })
       // .then((res) => res.json())
       .then((data) => {
         // Filter services where serviceProvider.email matches user.email

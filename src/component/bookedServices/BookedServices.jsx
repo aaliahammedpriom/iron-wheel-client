@@ -9,7 +9,7 @@ const BookedServices = () => {
     const userEmail = user.email;
 
     useEffect(() => {
-        axios(`http://localhost:3000/booked-services?email=${user.email}`,{ withCredentials: true })
+        axios(`https://iron-wheel.vercel.app/booked-services?email=${user.email}`,{ withCredentials: true })
             .then(res => setServices(res.data))
             
     }, [user]);

@@ -39,7 +39,7 @@ const BookService = () => {
 
     }
     
-  //  fetch(`http://localhost:3000/booked-services`,{
+  //  fetch(`https://iron-wheel.vercel.app/booked-services`,{
   //   method:'POST',
   //   headers:{
   //     'content-type': 'application/json'
@@ -53,7 +53,7 @@ const BookService = () => {
   //   }
   //  })
 
-   axios.post('http://localhost:3000/booked-services', bookedService, { withCredentials: true })
+   axios.post('https://iron-wheel.vercel.app/booked-services', bookedService, { withCredentials: true })
   .then(response => {
     if (response.data.acknowledged) {
       navigate('/booked-services');

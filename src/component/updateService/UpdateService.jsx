@@ -31,7 +31,7 @@ const AddService = () => {
             "currency": initialData.currency
         };
 
-        axios.put(`http://localhost:3000/services/${loadedService._id}`, updateService, {
+        axios.put(`https://iron-wheel.vercel.app/services/${loadedService._id}`, updateService, {
             headers: {
                 'Content-Type': 'application/json'
             },

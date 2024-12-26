@@ -9,7 +9,7 @@ const AllServices = () => {
 
   // Fetch all services
   useEffect(() => {
-    fetch('http://localhost:3000/services')
+    fetch('https://iron-wheel.vercel.app/services')
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);

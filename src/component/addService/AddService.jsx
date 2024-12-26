@@ -37,7 +37,7 @@ const AddService = () => {
 
         // console.log(newService)
 
-        axios.post('http://localhost:3000/services', newService, {
+        axios.post('https://iron-wheel.vercel.app/services', newService, {
             headers: {
                 'Content-Type': 'application/json'
             },
