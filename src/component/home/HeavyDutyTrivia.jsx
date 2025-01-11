@@ -21,7 +21,7 @@ const HeavyDutyTrivia = () => {
   ];
 
   return (
-    <section className="py-10 bg-gradient-to-r from-blue-100 to-blue-200">
+    <section className="py-10">
       <div className="max-w-7xl mx-auto px-4">
         <motion.h2
           className="text-3xl font-bold text-center text-primary mb-6"
@@ -35,13 +35,13 @@ const HeavyDutyTrivia = () => {
           {trivia.map((item, index) => (
             <motion.li
               key={index}
-              className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+              className=" p-4 rounded-lg shadow hover:shadow-lg transition"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: false }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              <p className="text-gray-700">{item.fact}</p>
+              <p className="">{item.fact}</p>
             </motion.li>
           ))}
         </ul>

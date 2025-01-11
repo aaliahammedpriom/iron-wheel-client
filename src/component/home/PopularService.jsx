@@ -27,7 +27,7 @@ const PopularService = () => {
         Our Popular Services
       </motion.h2>
 
-      <div className="grid md:grid-cols-2 gap-5">
+      <div className="grid md:grid-cols-3 gap-5">
         {services.map((service) => (
           <motion.div
             key={service._id}
@@ -44,7 +44,7 @@ const PopularService = () => {
       <div className="flex justify-center m-8">
         <Link
           to={'/services'}
-          className="btn text-3xl font-bold text-primary mb-6"
+          className="btn btn-primary text-3xl font-bold mb-6"
         >
           Show All Services
         </Link>

@@ -52,7 +52,7 @@ const AddService = () => {
     };
 
     return (
-        <div className="w-full max-w-4xl mx-auto bg-base-100 shadow-lg rounded-lg p-8">
+        <div className="w-full max-w-4xl mx-auto bg-base-100 shadow-lg rounded-lg p-8 pt-24">
             <h1 className="text-3xl font-bold text-center mb-6">Add a New Service</h1>
             <form onSubmit={handleAddService}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

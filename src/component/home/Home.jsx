@@ -3,6 +3,7 @@ import Banner from '../home/Banner'
 import PopularService from './PopularService';
 import ReviewCards from './ReviewCards';
 import HeavyDutyTrivia from './HeavyDutyTrivia';
+import Faq from './Faq';
 
 const Home = () => {
     
@@ -12,6 +13,7 @@ const Home = () => {
             <PopularService></PopularService>
             <ReviewCards></ReviewCards>
             <HeavyDutyTrivia></HeavyDutyTrivia>
+            <Faq></Faq>
         </div>
     );
 };

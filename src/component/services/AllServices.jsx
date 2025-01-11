@@ -33,8 +33,8 @@ const AllServices = () => {
   };
 
   return (
-    <div className="p-5">
-      <h2 className="text-2xl font-extrabold mb-8 text-center">
+    <div className="md:p-5 pt-24">
+      <h2 className="text-2xl font-extrabold mb-8 pt-24 text-center">
         All Available Services: {services.length}
       </h2>
 
@@ -80,9 +80,8 @@ const AllServices = () => {
           {[...Array(totalPages).keys()].map((page) => (
             <button
               key={page + 1}
-              className={`btn btn-sm ${
-                currentPage === page + 1 ? 'btn-active' : ''
-              }`}
+              className={`btn btn-sm ${currentPage === page + 1 ? 'btn-active' : ''
+                }`}
               onClick={() => handlePageChange(page + 1)}
             >
               {page + 1}

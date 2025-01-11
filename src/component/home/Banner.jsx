@@ -45,7 +45,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative w-full md:h-screen overflow-hidden bg-gray-900">
+    <div className="relative w-full h-[70vh] overflow-hidden pt-16">
       {/* Slides with framer-motion */}
       <motion.div
         className="flex transition-transform duration-1000 ease-in-out"
@@ -55,23 +55,16 @@ const Banner = () => {
         {slides.map((slide, index) => (
           <motion.div
             key={slide.id}
-            className={`w-full h-screen flex-shrink-0 relative ${
+            className={`w-full h-[70vh] flex-shrink-0 relative ${
               currentIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            } transition-all duration-1000 ease-in-out`}
+            } transition-all duration-1000 bg-cover ease-in-out`}
             style={{
               backgroundImage: `url(${slide.image})`,
-              backgroundSize: "cover",
+              // backgroundSize: "contain",
               backgroundPosition: "center",
             }}
           >
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center font-serif text-center text-[#f2f0e6] p-4">
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fadeIn">
-                {slide.title}
-              </h1>
-              <p className="text-md md:text-lg lg:text-xl mb-6 animate-fadeIn delay-200">
-                {slide.description}
-              </p>
-            </div>
+            
           </motion.div>
         ))}
       </motion.div>

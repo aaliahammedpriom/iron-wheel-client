@@ -27,16 +27,11 @@ const Navbar = () => {
         <li><Link to={"/"}>Home</Link></li>
         <li><Link to={"/services"}>Services</Link></li>
         {
-            user?.email? (<li>
-                <details className="  bg-base-100  rounded-md z-50">
-                    <summary className="cursor-pointer  hover:text-primary">
-                        Dashboard
-                    </summary>
-                    <ul className="p-2 space-y-2">
-                        <li>
+            user?.email? (<>
+            <li>
                             <Link
                                 to="/add-service"
-                                className="block text-sm font-medium text-gray-700 hover:text-primary"
+                                
                             >
                                 Add Service
                             </Link>
@@ -44,7 +39,7 @@ const Navbar = () => {
                         <li>
                             <Link
                                 to="/manage-services"
-                                className="block text-sm font-medium text-gray-700 hover:text-primary"
+                                
                             >
                                 Manage Service
                             </Link>
@@ -52,7 +47,7 @@ const Navbar = () => {
                         <li>
                             <Link
                                 to="/booked-services"
-                                className="block text-sm font-medium text-gray-700 hover:text-primary"
+                                
                             >
                                 Booked Service
                             </Link>
@@ -60,20 +55,16 @@ const Navbar = () => {
                         <li>
                             <Link
                                 to="/todo"
-                                className="block text-sm font-medium text-gray-700 hover:text-primary"
+                                
                             >
                                 To Do Service
                             </Link>
-                        </li>
-                    </ul>
-                </details>
-    
-            </li>): ''
+                        </li></>): ''
         }
     </>
-
+    console.log(!toggle)
     return (
-        <div className="navbar bg-base-100">
+        <div className={`navbar fixed z-10  bg-opacity-80  ${(toggle && 'bg-black')|| (!toggle && 'bg-gray-200')}`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -92,7 +83,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-gray-200 bg-opacity-50 rounded-box z-[1] mt-3 w-52 p-2 shadow ">
                         {links}
                     </ul>
                 </div>
@@ -101,8 +92,8 @@ const Navbar = () => {
                         <img className='w-12 border rounded-full' src="../../assets/icon.webp" alt="" />
                     </div></Link>
             </div>
-            <div className=" navbar-center hidden lg:flex">
-                <ul className=" menu menu-horizontal px-1">
+            <div className=" navbar-center hidden lg:flex ">
+                <ul className=" menu menu-horizontal px-1 text-xl">
                     {links}
                 </ul>
             </div>
@@ -129,7 +120,7 @@ const Navbar = () => {
 
 
                         </div>
-                        <div className="absolute right-0 top-0  bg-gray-800 text-white text-xs rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-3">
+                        <div className="absolute right-0 top-14  bg-gray-800 text-white text-xs rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-3">
                             {user?.displayName || "No User Name"}
                             <button onClick={handleSignOut} className="link link-hover text-white">SignOut </button>
                         </div>

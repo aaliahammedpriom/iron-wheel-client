@@ -12,7 +12,7 @@ const ManageServices = () => {
     const data = {
       status: e.target.value
     }
-    
+
     axios.patch(`https://iron-wheel.vercel.app/booked-services/${_id}`, data, {
       headers: {
         'Content-Type': 'application/json'
@@ -34,25 +34,27 @@ const ManageServices = () => {
       .then((data) => {
         // Filter services where serviceProvider.email matches user.email
         const filteredServices = data.data.filter(
-          (service) => service.serviceProvider.email === user.email
+          (service) => service.serviceProvider.email === user?.email
         );
         setServices(filteredServices);
       })
 
   }, [user?.email]);
-
+console.log(services)
   return (
-    <div className="p-5">
-      <h2 className="text-2xl font-extrabold mb-8 text-center">
-        TO-DO Services: <span className="text-primary">{services.length}</span>
-      </h2>
-
+    <div className="p-5 pt-24">
       {services.length === 0 ? (
-        <div className="text-center text-gray-500">
+        <div className="text-center items-center justify-center h-screen ">
+          <h2 className="text-2xl font-extrabold mb-8 text-center">
+            TO-DO Services: <span className="text-primary">{services.length}</span>
+          </h2>
           <p>No booked services found for you.</p>
         </div>
       ) : (
         <div className="overflow-x-auto">
+          <h2 className="text-2xl font-extrabold mb-8 text-center">
+            TO-DO Services: <span className="text-primary">{services.length}</span>
+          </h2>
           <table className="table w-full">
             <thead>
               <tr>
@@ -85,7 +87,6 @@ const ManageServices = () => {
                       <option value="working">Working</option>
                       <option value="completed">Completed</option>
                     </select>
-                    <p>{service._id}</p>
                   </td>
                 </tr>
               ))}

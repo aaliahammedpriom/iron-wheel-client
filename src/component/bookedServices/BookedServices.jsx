@@ -3,7 +3,7 @@ import AuthContext from '../../provider/Provider';
 import axios from 'axios';
 
 const BookedServices = () => {
-    const { user } = useContext(AuthContext);
+    const { user} = useContext(AuthContext);
     const [services, setServices] = useState([]);
     // console.log(services);
     const userEmail = user.email;
@@ -16,7 +16,7 @@ const BookedServices = () => {
 
     if (services.length === 0) {
         return (
-            <div className="flex items-center justify-center h-screen">
+            <div className="flex items-center justify-center h-screen ">
                 <h2 className="text-3xl text-center">
                     My Booking: {services.length}
                 </h2>
@@ -25,8 +25,8 @@ const BookedServices = () => {
     }
 
     return (
-        <div className="px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl text-center my-4">My Booking: {services.length}</h2>
+        <div className="px-4 sm:px-6 lg:px-8 pt-24">
+            <h2 className="text-2xl sm:text-3xl text-center my-4">My Booking: <span className='text-primary font-bold'>{services.length}</span></h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     {/* Table Head */}

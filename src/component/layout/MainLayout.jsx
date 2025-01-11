@@ -16,7 +16,7 @@ const MainLayout = () => {
 
     return (
         <div
-            className="max-w-7xl mx-auto"
+            className="  "
             data-theme={toggle ? "dark" : "light"}
         >
 
@@ -28,7 +28,9 @@ const MainLayout = () => {
 
             {/* Layout Components */}
             <Navbar />
-            <Outlet />
+            <div className='px-5'>
+                <Outlet />
+            </div>
             <Footer />
         </div>
     );

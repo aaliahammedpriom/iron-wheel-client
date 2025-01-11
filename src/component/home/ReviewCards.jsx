@@ -183,13 +183,10 @@ const ReviewCards = () => {
   };
 
   return (
-    <div className="relative w-full mx-auto py-10 bg-gray-100">
-      <h1 className="text-3xl font-bold text-center  text-[#8b004b]">
+    <div className="relative w-full mx-auto py-10">
+      <h1 className="text-3xl font-bold text-center text-primary uppercase mb-10">
         Customer Reviews
       </h1>
-      <p className=" text-center text-gray-500 text-sm mb-8">
-        See our clients review and decide your next fav equipment
-      </p>
       <div className="relative overflow-hidden ">
         {/* Slider Content */}
         <motion.div
@@ -205,9 +202,9 @@ const ReviewCards = () => {
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="bg-[#f2f0e6] rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 p-4">
+              <div className=" rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 p-4">
                 {/* Card Content */}
-                <div className="p-4 text-[#8b004b]">
+                <div className="p-4 ">
                   {/* Reviewer Info */}
                   <div className="flex items-center mb-4">
                     <img
@@ -216,7 +213,7 @@ const ReviewCards = () => {
                       className="w-12 h-12 rounded-full border-2 border-blue-500"
                     />
                     <div className="ml-3">
-                      <h3 className="font-semibold text-lg">{review.name}</h3>
+                      <h3 className="font-semibold text-xl text-primary">{review.name}</h3>
                       <div className="flex text-yellow-500">
                         {Array.from({ length: review.rating }).map((_, index) => (
                           <svg
@@ -233,7 +230,7 @@ const ReviewCards = () => {
                     </div>
                   </div>
                   {/* Review Text */}
-                  <p className="text-gray-600 text-sm">{review.review}</p>
+                  <p className=" text-sm">{review.review}</p>
                 </div>
               </div>
             </motion.div>
@@ -244,13 +241,13 @@ const ReviewCards = () => {
       {/* Navigation Buttons */}
       <button
         onClick={handlePrev}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-md hover:bg-gray-700 z-10"
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-primary text-white p-3 rounded-full shadow-md hover:bg-gray-700 z-10"
       >
         ❮
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-md hover:bg-gray-700 z-10"
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-white p-3 rounded-full shadow-md hover:bg-gray-700 z-10"
       >
         ❯
       </button>
